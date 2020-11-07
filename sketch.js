@@ -1,6 +1,19 @@
-let table, vllogo, dilogo, poppins;
+// Project Title: Lumen ID
+// Author: Sarwesh Shah, ValueLabs
+// Made with Love in Hyderabad
+
+// TODO: 
+// 1. Support Long Names
+// 2. Shift Shape based on Centroid
+// 3. Add Documentation comment
+// 4. Scale shape based on characters in name
+
+
+let table, vllogo, dilogo, poppins_bold;
 let iArray = [];
-let counter = 0;
+let counter = 30;
+
+// Size of the Lumen ID Card
 let outWidth = 900, outHeight = outWidth * 6.5/5;
 
 function preload() {
@@ -9,10 +22,12 @@ function preload() {
     print("CSV file Loaded!")
   });
 
+  // Preloading ValueLabs and DI Conference logos
   vllogo = loadImage('img/vllogo.png');
   dilogo = loadImage('img/dilogo.png');
 
-  poppins = loadFont('fonts/Poppins-Bold.ttf');
+  // Preloading Poppins font
+  poppins_bold = loadFont('fonts/Poppins-Bold.ttf');
 }
 
 function setup() {
@@ -33,10 +48,12 @@ function keyPressed() {
   if (key == 's') {
     save();
   }
-  if (keyCode === UP_ARROW) {
+
+  // Cycle through image on keypress
+  if (keyCode === UP_ARROW || keyCode === RIGHT_ARROW) {
     counter++;
     updateDiag();
-  } else if (keyCode === DOWN_ARROW) {
+  } else if (keyCode === DOWN_ARROW || keyCode === LEFT_ARROW) {
     if (counter != 0) {
       counter--;
       updateDiag();
@@ -44,6 +61,8 @@ function keyPressed() {
       counter = table.getRowCount();
     }
   }
+
+  // Print person info in dev console. Uncomment for debugging
   console.log(iArray[counter % table.getRowCount()].person);
 }
 
@@ -52,5 +71,6 @@ function updateDiag() {
   background(10);
 
   let obj = iArray[counter % table.getRowCount()];
-  obj.renderAll();
+  obj.renderLumenIDCard();
+  // obj.renderLumenZoomBanner();
 }

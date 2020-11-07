@@ -1,28 +1,43 @@
 class Lumen {
-  constructor(_person, _x = width / 2, _y = height / 2 - height / 8) {
+  constructor(_person) {
     this.person = _person;
+
+    // Configuration for rendering Lumen shape.
     this.config = {
+      // Min and max radius for Lumen shape
       minR: 250,
       maxR: 400
     }
 
     this.util = new Utility();
-    this.pos = createVector(_x, _y);
+
+    // Anchor point for shape from where lumen pts will be calculated
+    this.anchorPt = createVector(width / 2, height / 2 - height / 8);
+
+    // Position vector for the centroid of the shape created
     this.centroid = createVector(0, 0);
+
+    // Array of lumen pts for this person
     this.lumenArray = [];
 
+    // Whitespaces and special character from name is removed and make CAPs
     let nm = this.person.name;
     let letters = nm.trim().replaceAll(" ", "").replaceAll(".", "").toUpperCase().split("");
+
+    // Array of ASCII values for respective characters
     let nums = this.util.letterToNum(letters);
 
     for (let i = 0; i < nums.length; i++) {
-      let off = constrain(
+
+      // Alphabet position is mapped with distance of lumen pt from its anchor point
+      // Angles are marked equally around the circle with numbers of letter in the name
+      let reach = constrain(
         map(nums[i], 26, 1, this.config.maxR, this.config.minR),
         0, max(width, height));
 
       this.lumenArray.push(createVector(
-        off * cos(-HALF_PI + TAU / nums.length * i),
-        off * sin(-HALF_PI + TAU / nums.length * i))
+        reach * cos(-HALF_PI + TAU / nums.length * i),
+        reach * sin(-HALF_PI + TAU / nums.length * i))
       );
     }
 
@@ -34,20 +49,20 @@ class Lumen {
       this.centroid.add(lumen);
     }
     this.centroid.div(this.lumenArray.length);
-    // this.centroid.add(width / 2, height / 2);
   }
 
   renderLumen(_x, _y) {
     let divs = this.lumenArray.length;
     strokeCap(ROUND);
     noFill();
+
+    // Curve tightness is mapped with length of the name
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
     // curveTightness(1);
 
     for (let j = 0; j < 20; j++) {
       strokeWeight(3.5);
       stroke(240, 200, 45, 255 - 15 * j);
-
       // 218, 186, 96
 
       push();
@@ -75,7 +90,7 @@ class Lumen {
 
   renderBrandImages() {
     imageMode(CENTER);
-    image(dilogo, this.pos.x, this.pos.y, min(width, height) / 10, min(width, height) / 10);
+    image(dilogo, width / 2, height / 2 - height / 8, min(width, height) / 10, min(width, height) / 10);
 
     imageMode(CORNER);
     let aspr = vllogo.width / vllogo.height;
@@ -83,12 +98,12 @@ class Lumen {
   }
 
   renderPersonInfo() {
-    textFont(poppins);
+    textFont(poppins_bold);
     textAlign(CENTER, CENTER);
     noStroke();
     fill(218, 186, 96);
 
-    let voff = 40;
+    let voff = 72;
 
     // ATTENDEE NAME
     textSize(width / 18);
@@ -118,10 +133,10 @@ class Lumen {
     );
   }
 
-  renderAll() {
+  renderLumenIDCard() {
     push();
-    translate(-this.centroid.x, -this.centroid.y);
-    this.renderLumen(this.pos.x, this.pos.y);
+    translate(-2 * this.centroid.x, -2 * this.centroid.y);
+    this.renderLumen(this.anchorPt.x, this.anchorPt.y);
     pop();
 
     this.renderBrandImages();
