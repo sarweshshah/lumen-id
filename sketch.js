@@ -1,7 +1,7 @@
-let table, vllogo, dilogo;
+let table, vllogo, dilogo, poppins;
 let iArray = [];
 let counter = 0;
-let outWidth = 900, outHeight = 900;
+let outWidth = 900, outHeight = outWidth * 6.5/5;
 
 function preload() {
   // Load the csv file before beginning
@@ -12,6 +12,7 @@ function preload() {
   vllogo = loadImage('img/vllogo.png');
   dilogo = loadImage('img/dilogo.png');
 
+  poppins = loadFont('fonts/Poppins-Bold.ttf');
 }
 
 function setup() {
@@ -29,7 +30,7 @@ function setup() {
 }
 
 function keyPressed() {
-  if(key == 's') {
+  if (key == 's') {
     save();
   }
   if (keyCode === UP_ARROW) {
