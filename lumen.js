@@ -143,4 +143,19 @@ class Lumen {
     this.renderPersonInfo();
     // this.renderPointers();
   }
+
+  renderDebugUserDetails() {
+    noStroke();
+    fill(237, 191, 34);
+
+    textFont('monospace');
+    // textStyle(BOLD)
+    textSize(17);
+    textAlign(LEFT);
+    text(
+      'DESIGN INSPIRE 2020 \nUxG ValueLabs \n-\n' +
+      this.person.name.toUpperCase() + '\n2020.' +
+      this.util.pad(this.person.id, 4),
+      30, 90);
+  }
 }

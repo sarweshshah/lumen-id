@@ -72,5 +72,6 @@ function updateDiag() {
 
   let obj = iArray[counter % table.getRowCount()];
   obj.renderLumenIDCard();
+  // obj.renderDebugUserDetails();
   // obj.renderLumenZoomBanner();
 }
