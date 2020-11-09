@@ -27,6 +27,9 @@ class Utility {
   static editName(nm) {
     if (nm.length > 25) {
       let nmArray = nm.trim().replaceAll(".", "").toUpperCase().split(" ");
+      nmArray.splice(2, 0, '\n');
+      return nmArray;
     }
+    return nm;
   }
 }
