@@ -23,4 +23,10 @@ class Utility {
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
   }
+
+  static editName(nm) {
+    if (nm.length > 25) {
+      let nmArray = nm.trim().replaceAll(".", "").toUpperCase().split(" ");
+    }
+  }
 }
