@@ -103,7 +103,7 @@ class Lumen {
     noStroke();
     fill(218, 186, 96);
 
-    let voff = 72;
+    let voff = 75;
 
     // ATTENDEE NAME
     textSize(width / 18);
