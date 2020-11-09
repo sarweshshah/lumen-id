@@ -7,5 +7,6 @@ https://editor.p5js.org/sarweshshah/full/F4SPgdMbY
 The program essentially takes registered participant's name as input and dynamically creates a unique image for each one of them.
 The code currently pulls its data from a mock csv file.
 
+Sample image:
 
 ![](https://github.com/sarweshshah/lumen-id/blob/main/sample/sarwesh.png)
