@@ -8,6 +8,4 @@ The program essentially takes registered participant's name as input and dynamic
 The code currently pulls its data from a mock csv file.
 
 
-1 | 2
---- | ---
-![](https://github.com/sarweshshah/lumen-id/blob/main/sample/sarwesh.png) | ![](https://github.com/sarweshshah/lumen-id/blob/main/sample/tejus.png)
+![](https://github.com/sarweshshah/lumen-id/blob/main/sample/sarwesh.png)
