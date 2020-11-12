@@ -1,13 +1,15 @@
+/*
 // Project Title: Lumen ID
 // Author: Sarwesh Shah, ValueLabs
 // Made with Love in Hyderabad
 
-// TODO: 
-// 1. Support Long Names
-// 2. Shift Shape based on Centroid
-// 3. Add Documentation comment
-// 4. Scale shape based on characters in name
-
+// TODO:
+// - Support Long Names
+// - Render Zoom background
+// - Render skeleton diagram
+// - Scale shape based on characters in name
+// - Add p5.js control board
+*/
 
 let table, vllogo, dilogo, poppins_bold;
 let iArray = [];
@@ -15,6 +17,7 @@ let counter = 30;
 
 // Size of the Lumen ID Card
 let outWidth = 900, outHeight = outWidth * 6.5/5;
+// let outWidth = 900, outHeight = outWidth * 5.5/5;
 
 function preload() {
   // Load the csv file before beginning
@@ -44,9 +47,13 @@ function setup() {
   updateDiag();
 }
 
+// function draw() {
+//   iArray[counter % table.getRowCount()].renderSkeletonImage();
+// }
+
 function keyPressed() {
   if (key == 's') {
-    save();
+    save(iArray[counter % table.getRowCount()].person.name + '.png');
   }
 
   // Cycle through image on keypress
@@ -67,9 +74,6 @@ function keyPressed() {
 }
 
 function updateDiag() {
-  clear();
-  background(10);
-
   let obj = iArray[counter % table.getRowCount()];
   obj.renderLumenIDCard();
   // obj.renderDebugUserDetails();

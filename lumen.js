@@ -19,16 +19,16 @@ class Lumen {
 
     // Array of lumen pts for this person
     this.lumenArray = [];
+    this.letterArray = [];
 
     // Whitespaces and special character from name is removed and make CAPs
-    let nm = this.person.name;
-    let letters = nm.trim().replaceAll(" ", "").replaceAll(".", "").toUpperCase().split("");
+    let letters = this.person.name.trim().replaceAll(" ", "").replaceAll(".", "").toUpperCase().split("");
+    this.letterArray = letters;
 
     // Array of ASCII values for respective characters
     let nums = this.util.letterToNum(letters);
 
     for (let i = 0; i < nums.length; i++) {
-
       // Alphabet position is mapped with distance of lumen pt from its anchor point
       // Angles are marked equally around the circle with numbers of letter in the name
       let reach = constrain(
@@ -89,12 +89,17 @@ class Lumen {
   }
 
   renderBrandImages() {
+    push();
     imageMode(CENTER);
     image(dilogo, width / 2, height / 2 - height / 8, min(width, height) / 10, min(width, height) / 10);
+    pop();
 
+    push();
     imageMode(CORNER);
     let aspr = vllogo.width / vllogo.height;
-    image(vllogo, width - 3 * width / 25, height / 30 * width / height, 15 * aspr, 15)
+    tint(255, 127); // Display at half opacity
+    image(vllogo, width - 4 * width / 25, height / 30 * width / height, 21 * aspr, 21);
+    pop();
   }
 
   renderPersonInfo() {
@@ -134,6 +139,8 @@ class Lumen {
   }
 
   renderLumenIDCard() {
+    background(10);
+
     push();
     translate(-2 * this.centroid.x, -2 * this.centroid.y);
     this.renderLumen(this.anchorPt.x, this.anchorPt.y);
@@ -142,6 +149,15 @@ class Lumen {
     this.renderBrandImages();
     this.renderPersonInfo();
     // this.renderPointers();
+  }
+
+  renderClearLumens() {
+    clear();
+
+    push();
+    translate(-2 * this.centroid.x, -2 * this.centroid.y);
+    this.renderLumen(this.anchorPt.x, this.anchorPt.y);
+    pop();
   }
 
   renderDebugUserDetails() {
