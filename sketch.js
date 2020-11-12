@@ -53,6 +53,7 @@ function setup() {
 
 function draw() {
   iArray[counter % table.getRowCount()].renderSkeletonImage();
+  // iArray[counter % table.getRowCount()].renderDebugUserDetails();
 }
 
 function keyPressed() {

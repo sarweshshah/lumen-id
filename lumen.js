@@ -169,19 +169,16 @@ class Lumen {
     noStroke();
     fill(237, 191, 34);
 
-    textFont('monospace');
-    // textStyle(BOLD)
+    textFont(poppins_reg);
     textSize(17);
-    textAlign(LEFT);
+    textAlign(TOP, LEFT);
     text(
-      'DESIGN INSPIRE 2020 \nUxG ValueLabs \n-\n' +
-      this.person.name.toUpperCase() + '\n2020.' +
-      this.util.pad(this.person.id, 4),
-      30, 90);
+      this.person.name.toUpperCase(),
+      30, 50);
   }
 
   renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2 - height/10) {
-    background(20);
+    background(0);
 
     let divs = this.lumenArray.length;
     strokeCap(ROUND);
