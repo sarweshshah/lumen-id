@@ -56,7 +56,7 @@ class Lumen {
     this.centroid.div(this.lumenArray.length);
   }
 
-  renderLumen(_x, _y) {
+  renderLumen(_x, _y, _steps = 20) {
     let divs = this.lumenArray.length;
     strokeCap(ROUND);
     noFill();
@@ -65,7 +65,7 @@ class Lumen {
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
     // curveTightness(1);
 
-    for (let j = 0; j < 20; j++) {
+    for (let j = 0; j < _steps; j++) {
       strokeWeight(3.5);
       stroke(240, 200, 45, 255 - 15 * j);
       // 218, 186, 96
@@ -180,7 +180,7 @@ class Lumen {
       30, 90);
   }
 
-  renderSkeletonImage(_x = this.anchorPt.x, _y = height/2) {
+  renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2) {
     background(20);
 
     let divs = this.lumenArray.length;
@@ -208,20 +208,26 @@ class Lumen {
         let pt = createVector(r * cos(ang), r * sin(ang))
         curveVertex(_x + pt.x, _y + pt.y);
 
+        // Add point at the location of a lumen pt
+        push();
         strokeWeight(5.5);
         point(_x + pt.x, _y + pt.y);
+        pop();
 
-        strokeWeight(1.5);
-        textAlign(CENTER, CENTER);
-        text(
-          this.letterArray[count],
-          _x + (r + 30) * cos(ang), _y + (r + 30) * sin(ang)
-        );
+        // Add interactivity over mouse hover
+        if (dist(_x + pt.x, _y + pt.y, mouseX, mouseY) < 20) {
+          // Write the corresponding alphabet for the point
+          strokeWeight(1.5);
+          textAlign(CENTER, CENTER);
+          text(
+            this.letterArray[count],
+            _x + (r + 30) * cos(ang), _y + (r + 30) * sin(ang)
+          );
 
-        if (count == 0) {
+          // Draw a circle around the selected point
           strokeWeight(1);
-          rectMode(CENTER);
-          rect(_x,_y + pt.y,15);
+          ellipseMode(CENTER);
+          ellipse(_x + pt.x, _y + pt.y, 25);
         }
 
         count += 1;

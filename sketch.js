@@ -47,9 +47,9 @@ function setup() {
   updateDiag();
 }
 
-// function draw() {
-//   iArray[counter % table.getRowCount()].renderSkeletonImage();
-// }
+function draw() {
+  iArray[counter % table.getRowCount()].renderSkeletonImage();
+}
 
 function keyPressed() {
   if (key == 's') {
@@ -77,7 +77,7 @@ function updateDiag() {
   let obj = iArray[counter % table.getRowCount()];
   
   // obj.renderLumenIDCard();
-  obj.renderSkeletonImage();
+  // obj.renderSkeletonImage();
   // obj.renderClearLumens();
   // obj.renderDebugUserDetails();
   // obj.renderLumenZoomBanner();
