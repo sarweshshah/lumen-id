@@ -27,11 +27,6 @@ https://editor.p5js.org/sarweshshah/full/F4SPgdMbY
 The program essentially takes registered participant's name as input and dynamically creates a unique image for each one of them.
 The code currently pulls its data from a mock csv file.
 
-Sample Lumen ID Card:
-
-![](https://github.com/sarweshshah/lumen-id/blob/main/sample/sarwesh.png)
-
-
-Skeleton View of a Lumen:
-
-![](https://github.com/sarweshshah/lumen-id/blob/main/sample/skeleton.gif)
+Sample Lumen ID Card | Skeleton View of a Lumen
+-- | --
+![](https://github.com/sarweshshah/lumen-id/blob/main/sample/kiran.png) | ![](https://github.com/sarweshshah/lumen-id/blob/main/sample/skeleton.gif)
