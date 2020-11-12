@@ -1,5 +1,5 @@
 # Lumen ID
-Generative IDs (Lumen IDs) for each attendee for the DI Conference on Nov 28.
+A visual identity (Lumen IDs) for each attendee for the DI Conference on Nov 28. This blended technique is based on programming and particularly on an algorithm enables the designer to create a graphic system of rules that will generate numerous results respectively, based on each attendee’s details.
 
 You can play with the test code here:
 https://editor.p5js.org/sarweshshah/full/F4SPgdMbY
