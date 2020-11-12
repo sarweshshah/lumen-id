@@ -11,7 +11,8 @@
 // - Add p5.js control board
 */
 
-let table, vllogo, dilogo, poppins_bold;
+let table, vllogo, dilogo;
+let poppins_bold, poppins_reg, poppins_med, poppins_semb;
 let iArray = [];
 let counter = 30;
 
@@ -31,6 +32,9 @@ function preload() {
 
   // Preloading Poppins font
   poppins_bold = loadFont('fonts/Poppins-Bold.ttf');
+  poppins_reg = loadFont('fonts/Poppins-Regular.ttf');
+  poppins_med = loadFont('fonts/Poppins-Medium.ttf');
+  poppins_semb = loadFont('fonts/Poppins-SemiBold.ttf');
 }
 
 function setup() {

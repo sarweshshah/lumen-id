@@ -1,8 +1,21 @@
 # Lumen
-A visual identity (Lumen IDs) representing each attendee for the DI Conference on Nov 28. A blended technique is based on programming and particularly on an algorithm enables the designer to create a graphic system of rules that will generate numerous results respectively, based on each attendee’s details.
+A unique visual identity (Lumen IDs) for each participant attending the ValueLabs DI Conference on Nov 28, 2020.
 
-## How is it made?
-Lumen is an generative algorithm that converts data collected from the individuals at an DI conference, into unique and personalised takeaways. The data is submitted by the participant through a form, in digital format. The form captures the ‘professional profile’ of the participants.
+## Concept
+The idea of Dynamic Branding lies at the interaction of comptuer graphics, generative design and creative coding.
+This blended technique, which is based on programming and particularly on an algorithm, enables the designer to create a graphic system of rules that will generate numerous results respectively, based on each attendee’s details.
+
+Lumen, a product of exploration in this realm, is an generative algorithm that converts data collected from the individuals at DI conference 2020, into unique, organic and personalised visual assets that are manifested as attendee takeaways like ID cards, Zoom backgrounds, etc.
+
+1. **Data Collection** : The data is submitted by the participant is transformed in an organic form, in digital format. The form captures the ‘distinctive profile’ of the participants.
+
+2. **Visual Library** : Data from the registration information is parsed using javascript graphic library [P5.js](https://p5js.org/).
+
+3. **Shape Logic** : Using the number of the letters in the name of an individual and their relative positioning in the the English alphabet sequence, curved vertices are distributed radially on the image and canvas and the resultant shape is formed. The curve tightness of the shape adjusted with the length of characters in the name.
+
+The project explore the ideas around Generative art, Data visualisation and Dynamic Indentity as a way to personalise digital merchandise that are offered to attendees in the conference.
+
+## Other Links
 
 You can play with the test code here:
 https://editor.p5js.org/sarweshshah/full/F4SPgdMbY

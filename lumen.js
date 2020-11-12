@@ -219,8 +219,8 @@ class Lumen {
             // Write the corresponding alphabet for the point
             push();
             textAlign(CENTER, CENTER);
-            textFont('Monospace');
-            textSize(25);
+            textFont(poppins_reg);
+            textSize(22);
             fill(240, 200, 45);
             text(
               this.letterArray[count],
@@ -242,9 +242,9 @@ class Lumen {
       this.renderGrids(_x, _y);
     }
 
-    fill(240, 200, 45, 90);
+    fill(240, 200, 45, 180);
     textSize(22);
-    textFont('Monospace');
+    textFont(poppins_reg);
     textAlign(CENTER, BOTTOM);
     text(
       "This image is a skeleton view for the Lumen\n generated based on your name. \n\nHover over the points (starting from top) to view \na vertex's corresponding alphabet.",
