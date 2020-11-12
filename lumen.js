@@ -180,7 +180,7 @@ class Lumen {
       30, 90);
   }
 
-  renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2) {
+  renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2 - height/10) {
     background(20);
 
     let divs = this.lumenArray.length;
@@ -196,9 +196,8 @@ class Lumen {
       if (j == 0) {
         strokeWeight(1.5);
         stroke(240, 200, 45);
-        fill(240, 200, 45, 3);
+        fill(240, 200, 45, 10);
       }
-      // 218, 186, 96
 
       beginShape();
       let count = 0;
@@ -214,20 +213,26 @@ class Lumen {
         point(_x + pt.x, _y + pt.y);
         pop();
 
-        // Add interactivity over mouse hover
-        if (dist(_x + pt.x, _y + pt.y, mouseX, mouseY) < 20) {
-          // Write the corresponding alphabet for the point
-          strokeWeight(1.5);
-          textAlign(CENTER, CENTER);
-          text(
-            this.letterArray[count],
-            _x + (r + 30) * cos(ang), _y + (r + 30) * sin(ang)
-          );
+        if (j == 0) {
+          // Add interactivity over mouse hover
+          if (dist(_x + pt.x, _y + pt.y, mouseX, mouseY) < 20) {
+            // Write the corresponding alphabet for the point
+            push();
+            textAlign(CENTER, CENTER);
+            textFont('Monospace');
+            textSize(25);
+            fill(240, 200, 45);
+            text(
+              this.letterArray[count],
+              _x + (r + 30) * cos(ang), _y + (r + 30) * sin(ang)
+            );
+            pop();
 
-          // Draw a circle around the selected point
-          strokeWeight(1);
-          ellipseMode(CENTER);
-          ellipse(_x + pt.x, _y + pt.y, 25);
+            // Draw a circle around the selected point
+            strokeWeight(1);
+            ellipseMode(CENTER);
+            ellipse(_x + pt.x, _y + pt.y, 25);
+          }
         }
 
         count += 1;
@@ -236,6 +241,15 @@ class Lumen {
 
       this.renderGrids(_x, _y);
     }
+
+    fill(240, 200, 45, 90);
+    textSize(22);
+    textFont('Monospace');
+    textAlign(CENTER, BOTTOM);
+    text(
+      "This image is a skeleton view for the Lumen\n generated based on your name. \n\nHover over the points (starting from top) to view \na vertex's corresponding alphabet.",
+      _x, height * 9.25 / 10
+    );
   }
 
   renderGrids(_x = this.anchorPt.x, _y = this.anchorPt.y) {
