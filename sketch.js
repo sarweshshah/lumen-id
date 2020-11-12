@@ -75,7 +75,10 @@ function keyPressed() {
 
 function updateDiag() {
   let obj = iArray[counter % table.getRowCount()];
-  obj.renderLumenIDCard();
+  
+  // obj.renderLumenIDCard();
+  obj.renderSkeletonImage();
+  // obj.renderClearLumens();
   // obj.renderDebugUserDetails();
   // obj.renderLumenZoomBanner();
 }

@@ -2,6 +2,10 @@ class Lumen {
   constructor(_person) {
     this.person = _person;
 
+    // this.lumenID = createGraphics();
+    // this.lumenZoom = createGraphics();
+    // this.skeletonImage = createGraphics();
+
     // Configuration for rendering Lumen shape.
     this.config = {
       // Min and max radius for Lumen shape
@@ -13,6 +17,7 @@ class Lumen {
 
     // Anchor point for shape from where lumen pts will be calculated
     this.anchorPt = createVector(width / 2, height / 2 - height / 8);
+    // this.anchorPt = createVector(width / 2, height / 2);
 
     // Position vector for the centroid of the shape created
     this.centroid = createVector(0, 0);
@@ -173,5 +178,75 @@ class Lumen {
       this.person.name.toUpperCase() + '\n2020.' +
       this.util.pad(this.person.id, 4),
       30, 90);
+  }
+
+  renderSkeletonImage() {
+    background(20);
+
+    let divs = this.lumenArray.length;
+    strokeCap(ROUND);
+
+    // Curve tightness is mapped with length of the name
+    curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
+    // curveTightness(1);
+
+    for (let j = 0; j < 3; j++) {
+      strokeWeight(1.5);
+      stroke(240, 200, 45, 55 - 15 * j);
+
+      if (j == 0) {
+        strokeWeight(1.5);
+        stroke(240, 200, 45);
+        fill(240, 200, 45, 3);
+      }
+      // 218, 186, 96
+
+      beginShape();
+      let count = 0;
+      for (let lumenPt of this.lumenArray) {
+        let r = dist(0, 0, lumenPt.x, lumenPt.y) - 10 * j;
+        let ang = lumenPt.heading();
+        let pt = createVector(r * cos(ang), r * sin(ang))
+        curveVertex(this.anchorPt.x + pt.x, this.anchorPt.y + pt.y);
+
+        strokeWeight(5.5);
+        point(this.anchorPt.x + pt.x, this.anchorPt.y + pt.y);
+
+        strokeWeight(1.5);
+        textAlign(CENTER, CENTER);
+        text(
+          this.letterArray[count],
+          this.anchorPt.x + (r + 20) * cos(ang), this.anchorPt.y + (r + 20) * sin(ang)
+        );
+
+        count += 1;
+      }
+      endShape(CLOSE);
+
+      strokeWeight(5.5);
+      point(
+        this.anchorPt.x + this.config.maxR * cos(frameCount / 100 - HALF_PI),
+        this.anchorPt.y + this.config.maxR * sin(frameCount / 100 - HALF_PI)
+      );
+      strokeWeight(1);
+      ellipseMode(CENTER);
+      ellipse(
+        this.anchorPt.x + this.config.maxR * cos(frameCount / 100 - HALF_PI),
+        this.anchorPt.y + this.config.maxR * sin(frameCount / 100 - HALF_PI),
+        20 * cos(frameCount / 10)
+      )
+
+      this.renderGrids();
+    }
+  }
+
+  renderGrids(_x = this.anchorPt.x, _y = this.anchorPt.y) {
+    noFill();
+    strokeWeight(2);
+    stroke(240, 200, 45, 25);
+    ellipseMode(CENTER);
+
+    ellipse(_x, _y, this.config.maxR * 2);
+    ellipse(_x, _y, this.config.minR * 2);
   }
 }
