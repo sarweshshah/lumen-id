@@ -2,7 +2,8 @@
 A unique visual identity (Lumen IDs) for each participant attending the ValueLabs DI Conference on Nov 28, 2020.
 
 ## Concept
-The idea of Dynamic Branding lies at the interaction of comptuer graphics, generative design and creative coding.
+The idea of Dynamic Branding lies at the interaction of Computational Art, Generative Design and Creative Coding. It is an extension of the role of computer codes From a traditional instruction giving paradigm to defining visual and spatial structures.
+
 This blended technique, which is based on programming and particularly on an algorithm, enables the designer to create a graphic system of rules that will generate numerous results respectively, based on each attendee’s details.
 
 Lumen, a product of exploration in this realm, is an generative algorithm that converts data collected from the individuals at DI conference 2020, into unique, organic and personalised visual assets that are manifested as attendee takeaways like ID cards, Zoom backgrounds, etc.
@@ -13,7 +14,10 @@ Lumen, a product of exploration in this realm, is an generative algorithm that c
 
 3. **Shape Logic** : Using the number of the letters in the name of an individual and their relative positioning in the the English alphabet sequence, curved vertices are distributed radially on the image and canvas and the resultant shape is formed. The curve tightness of the shape adjusted with the length of characters in the name.
 
-The project explore the ideas around Generative art, Data visualisation and Dynamic Indentity as a way to personalise digital merchandise that are offered to attendees in the conference.
+Know more about generative design and creative coding here:
+1. _Form+Code in Design, Art, and Architecture_ by Chandler Casey Reas
+2. _Generative Design: Visualize, Program, and Create with Processing_ by Hartmut Bohnacker
+3. _The Nature of Code: Simulating Natural Systems with Processing_ by Daniel Shiffman
 
 ## Other Links
 
