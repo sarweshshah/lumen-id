@@ -156,12 +156,12 @@ class Lumen {
     // this.renderPointers();
   }
 
-  renderClearLumens() {
+  renderClearLumens(_x = this.anchorPt.x, _y = this.anchorPt.y) {
     clear();
 
     push();
     translate(-2 * this.centroid.x, -2 * this.centroid.y);
-    this.renderLumen(this.anchorPt.x, this.anchorPt.y);
+    this.renderLumen(_x, _y);
     pop();
   }
 
@@ -180,7 +180,7 @@ class Lumen {
       30, 90);
   }
 
-  renderSkeletonImage() {
+  renderSkeletonImage(_x = this.anchorPt.x, _y = height/2) {
     background(20);
 
     let divs = this.lumenArray.length;
@@ -188,7 +188,6 @@ class Lumen {
 
     // Curve tightness is mapped with length of the name
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
-    // curveTightness(1);
 
     for (let j = 0; j < 3; j++) {
       strokeWeight(1.5);
@@ -207,36 +206,29 @@ class Lumen {
         let r = dist(0, 0, lumenPt.x, lumenPt.y) - 10 * j;
         let ang = lumenPt.heading();
         let pt = createVector(r * cos(ang), r * sin(ang))
-        curveVertex(this.anchorPt.x + pt.x, this.anchorPt.y + pt.y);
+        curveVertex(_x + pt.x, _y + pt.y);
 
         strokeWeight(5.5);
-        point(this.anchorPt.x + pt.x, this.anchorPt.y + pt.y);
+        point(_x + pt.x, _y + pt.y);
 
         strokeWeight(1.5);
         textAlign(CENTER, CENTER);
         text(
           this.letterArray[count],
-          this.anchorPt.x + (r + 20) * cos(ang), this.anchorPt.y + (r + 20) * sin(ang)
+          _x + (r + 30) * cos(ang), _y + (r + 30) * sin(ang)
         );
+
+        if (count == 0) {
+          strokeWeight(1);
+          rectMode(CENTER);
+          rect(_x,_y + pt.y,15);
+        }
 
         count += 1;
       }
       endShape(CLOSE);
 
-      strokeWeight(5.5);
-      point(
-        this.anchorPt.x + this.config.maxR * cos(frameCount / 100 - HALF_PI),
-        this.anchorPt.y + this.config.maxR * sin(frameCount / 100 - HALF_PI)
-      );
-      strokeWeight(1);
-      ellipseMode(CENTER);
-      ellipse(
-        this.anchorPt.x + this.config.maxR * cos(frameCount / 100 - HALF_PI),
-        this.anchorPt.y + this.config.maxR * sin(frameCount / 100 - HALF_PI),
-        20 * cos(frameCount / 10)
-      )
-
-      this.renderGrids();
+      this.renderGrids(_x, _y);
     }
   }
 
