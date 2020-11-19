@@ -27,7 +27,7 @@ class Lumen {
     this.letterArray = [];
 
     // Whitespaces and special character from name is removed and make CAPs
-    this.letterArray = this.person.name.trim().replaceAll(" ", "").replaceAll(".", "").toUpperCase().split("");
+    this.letterArray = this.person.name.trim().split(" ").join("").split(".").join("").toUpperCase().split("");
 
     // Array of ASCII values for respective characters
     let nums = this.util.letterToNum(this.letterArray);
