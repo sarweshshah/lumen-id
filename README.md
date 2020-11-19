@@ -2,7 +2,7 @@
 A unique visual identity (Lumen IDs) for each participant attending the ValueLabs DI Conference on Nov 28, 2020.
 
 ## Concept
-The idea of Dynamic Branding lies at the interaction of Computational Art, Generative Design and Creative Coding. It is an extension of the role of computer codes From a traditional instruction giving paradigm to defining visual and spatial structures.
+The idea of Dynamic Branding lies at the intersection of Computational Art, Generative Design and Creative Coding. It is an extension of the role of computer codes from a traditional instruction giving paradigm to defining visual and spatial structures.
 
 This blended technique, which is based on programming and particularly on an algorithm, enables the designer to create a graphic system of rules that will generate numerous results respectively, based on each attendee’s details.
 

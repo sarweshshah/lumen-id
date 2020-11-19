@@ -52,7 +52,8 @@ function setup() {
 }
 
 function draw() {
-  iArray[counter % table.getRowCount()].renderSkeletonImage();
+  // iArray[counter % table.getRowCount()].renderSkeletonImage();
+  iArray[counter % table.getRowCount()].renderLumenIDCard();
   // iArray[counter % table.getRowCount()].renderDebugUserDetails();
 }
 
@@ -75,7 +76,7 @@ function keyPressed() {
   }
 
   // Print person info in dev console. Uncomment for debugging
-  console.log(iArray[counter % table.getRowCount()].person);
+  console.log(iArray[counter % table.getRowCount()]);
 }
 
 function updateDiag() {

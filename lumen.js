@@ -27,11 +27,10 @@ class Lumen {
     this.letterArray = [];
 
     // Whitespaces and special character from name is removed and make CAPs
-    let letters = this.person.name.trim().replaceAll(" ", "").replaceAll(".", "").toUpperCase().split("");
-    this.letterArray = letters;
+    this.letterArray = this.person.name.trim().replaceAll(" ", "").replaceAll(".", "").toUpperCase().split("");
 
     // Array of ASCII values for respective characters
-    let nums = this.util.letterToNum(letters);
+    let nums = this.util.letterToNum(this.letterArray);
 
     for (let i = 0; i < nums.length; i++) {
       // Alphabet position is mapped with distance of lumen pt from its anchor point
@@ -178,7 +177,7 @@ class Lumen {
   }
 
   renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2 - height/10) {
-    background(0);
+    background(15);
 
     let divs = this.lumenArray.length;
     strokeCap(ROUND);
