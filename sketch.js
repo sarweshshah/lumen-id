@@ -37,6 +37,7 @@ function preload() {
 
 function setup() {
   createCanvas(outWidth, outHeight);
+  frameRate(3);
 
   // 1. Get a row from CSV file
   // 2. Parse it into an Indentity object
@@ -49,9 +50,12 @@ function setup() {
 }
 
 function draw() {
-  // iArray[counter % table.getRowCount()].renderSkeletonImage();
-  iArray[counter % table.getRowCount()].renderLumenIDCard();
-  // iArray[counter % table.getRowCount()].renderDebugUserDetails();
+  updateDiag();
+
+  // Save all id cards as images
+  // save(iArray[counter % table.getRowCount()].person.id + '.png');
+  // counter++;
+  // if (counter == table.getRowCount()) noLoop();
 }
 
 function keyPressed() {
