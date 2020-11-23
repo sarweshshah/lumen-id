@@ -5,16 +5,14 @@
 
 // TODO:
 // - Support Long Names
-// - Render Zoom background
-// - Render skeleton diagram
-// - Scale shape based on characters in name
 // - Add p5.js control board
+// - Resize ID card and skeleton image
 */
 
 let table, vllogo, dilogo;
 let poppins_bold, poppins_reg, poppins_med, poppins_semb;
 let iArray = [];
-let counter = 30;
+let counter = 0;
 
 // Size of the Lumen ID Card
 let outWidth = 900, outHeight = outWidth * 6.5/5;
@@ -47,7 +45,6 @@ function setup() {
     let aRow = table.getRow(r);
     iArray.push(new Lumen(aRow.obj));
   }
-
   updateDiag();
 }
 
@@ -58,8 +55,8 @@ function draw() {
 }
 
 function keyPressed() {
-  if (key == 's') {
-    save(iArray[counter % table.getRowCount()].person.name + '.png');
+  if (key == 'p') {
+    save(iArray[counter % table.getRowCount()].person.id + '.png');
   }
 
   // Cycle through image on keypress

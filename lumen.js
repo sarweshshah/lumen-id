@@ -2,10 +2,6 @@ class Lumen {
   constructor(_person) {
     this.person = _person;
 
-    // this.lumenID = createGraphics();
-    // this.lumenZoom = createGraphics();
-    // this.skeletonImage = createGraphics();
-
     // Configuration for rendering Lumen shape.
     this.config = {
       // Min and max radius for Lumen shape
@@ -55,7 +51,7 @@ class Lumen {
     this.centroid.div(this.lumenArray.length);
   }
 
-  renderLumen(_x, _y, _steps = 20) {
+  renderLumen(_x, _y, _zoom = 1, _steps_size = 10) {
     let divs = this.lumenArray.length;
     strokeCap(ROUND);
     noFill();
@@ -64,7 +60,7 @@ class Lumen {
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
     // curveTightness(1);
 
-    for (let j = 0; j < _steps; j++) {
+    for (let j = 0; j < 40; j++) {
       strokeWeight(3.5);
       stroke(240, 200, 45, 255 - 15 * j);
       // 218, 186, 96
@@ -72,7 +68,9 @@ class Lumen {
       push();
       beginShape();
       for (let lumenPt of this.lumenArray) {
-        let r = dist(0, 0, lumenPt.x, lumenPt.y) - 10 * j;
+        let r = dist(0, 0, lumenPt.x, lumenPt.y) - _steps_size * j;
+        r *= _zoom;
+
         let ang = lumenPt.heading();
         let pt = createVector(r * cos(ang), r * sin(ang))
         curveVertex(_x + pt.x, _y + pt.y);
@@ -95,14 +93,21 @@ class Lumen {
   renderBrandImages() {
     push();
     imageMode(CENTER);
-    image(dilogo, width / 2, height / 2 - height / 8, min(width, height) / 10, min(width, height) / 10);
+    image(
+      dilogo,
+      width / 2, height / 2 - height / 8,
+      min(width, height) / 10, min(width, height) / 10
+    );
     pop();
 
     push();
     imageMode(CORNER);
     let aspr = vllogo.width / vllogo.height;
     tint(255, 127); // Display at half opacity
-    image(vllogo, width - 4 * width / 25, height / 30 * width / height, 21 * aspr, 21);
+    image(
+      vllogo,
+      width - 4 * width / 25, height / 30 * width / height,
+      21 * aspr, 21);
     pop();
   }
 
@@ -160,7 +165,7 @@ class Lumen {
 
     push();
     translate(-2 * this.centroid.x, -2 * this.centroid.y);
-    this.renderLumen(_x, _y);
+    this.renderLumen(_x, height / 2);
     pop();
   }
 
@@ -168,15 +173,15 @@ class Lumen {
     noStroke();
     fill(237, 191, 34);
 
-    textFont(poppins_reg);
-    textSize(17);
-    textAlign(TOP, LEFT);
+    textFont('monospace');
+    textSize(13);
+    textAlign(LEFT, TOP);
     text(
-      this.person.name.toUpperCase(),
-      30, 50);
+      this.person.name.toUpperCase() + '\n' + this.person.profession + '\n',
+      40, 40);
   }
 
-  renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2 - height/10) {
+  renderSkeletonImage(_x = this.anchorPt.x, _y = height / 2 - height / 10) {
     background(15);
 
     let divs = this.lumenArray.length;
@@ -185,7 +190,7 @@ class Lumen {
     // Curve tightness is mapped with length of the name
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
 
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 1; j++) {
       strokeWeight(1.5);
       stroke(240, 200, 45, 55 - 15 * j);
 
@@ -205,13 +210,14 @@ class Lumen {
 
         // Add point at the location of a lumen pt
         push();
-        strokeWeight(5.5);
+        strokeWeight(7.5);
         point(_x + pt.x, _y + pt.y);
         pop();
 
         if (j == 0) {
           // Add interactivity over mouse hover
-          if (dist(_x + pt.x, _y + pt.y, mouseX, mouseY) < 20) {
+          // if (dist(_x + pt.x, _y + pt.y, mouseX, mouseY) < 20) {
+          if (1) {
             // Write the corresponding alphabet for the point
             push();
             textAlign(CENTER, CENTER);
@@ -227,7 +233,7 @@ class Lumen {
             // Draw a circle around the selected point
             strokeWeight(1);
             ellipseMode(CENTER);
-            ellipse(_x + pt.x, _y + pt.y, 25);
+            // ellipse(_x + pt.x, _y + pt.y, 15);
           }
         }
 
@@ -243,9 +249,12 @@ class Lumen {
     textFont(poppins_reg);
     textAlign(CENTER, BOTTOM);
     text(
-      "This image is a skeleton view for the Lumen\n generated based on your name. \n\nHover over the points (starting from top) to view \na vertex's corresponding alphabet.",
+      "This image is a skeleton view for the Lumen\n generated based on your name.\n\n" +
+      "Text near the points (starting from top) shows \na vertex's corresponding alphabet.",
       _x, height * 9.25 / 10
     );
+
+    this.renderDebugUserDetails();
   }
 
   renderGrids(_x = this.anchorPt.x, _y = this.anchorPt.y) {
