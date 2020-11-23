@@ -266,4 +266,19 @@ class Lumen {
     ellipse(_x, _y, this.config.maxR * 2);
     ellipse(_x, _y, this.config.minR * 2);
   }
+
+  renderZoomBg(_x = 1 * width, _y = - height / 3.5, _scale = 2.3) {
+    background(20);
+    this.renderLumen(_x, _y, _scale, 7.5);
+
+    push();
+    imageMode(CORNER);
+    image(
+      dilogo,
+      40, height - 90, min(width, height) / 15, min(width, height) / 15
+    );
+    pop();
+
+    // this.renderDebugUserDetails();
+  }
 }

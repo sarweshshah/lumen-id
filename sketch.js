@@ -15,8 +15,13 @@ let iArray = [];
 let counter = 0;
 
 // Size of the Lumen ID Card
-let outWidth = 900, outHeight = outWidth * 6.5/5;
-// let outWidth = 900, outHeight = outWidth * 5.5/5;
+// let outWidth = 900, outHeight = outWidth * 6.5 / 5;
+
+// Size of the Zoom Banner
+let outWidth = 1080, outHeight = outWidth * 9/16;
+
+// Size of the Clear Lumens
+// let outWidth = 900, outHeight = outWidth;
 
 function preload() {
   // Load the csv file before beginning
@@ -82,7 +87,8 @@ function keyPressed() {
 
 function updateDiag() {
   let obj = iArray[counter % table.getRowCount()];
-  
+
+  obj.renderZoomBg();
   // obj.renderLumenIDCard();
   // obj.renderSkeletonImage();
   // obj.renderClearLumens();
