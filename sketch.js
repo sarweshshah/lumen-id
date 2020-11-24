@@ -14,11 +14,14 @@ let poppins_bold, poppins_reg, poppins_med, poppins_semb;
 let iArray = [];
 let counter = 0;
 
-// Size of the Lumen ID Card
+// Size of the Lumen ID Card and Skeleton Image
 // let outWidth = 900, outHeight = outWidth * 6.5 / 5;
 
+// Size of the Lumen Tile
+let outWidth = 900, outHeight = outWidth * 6 / 5;
+
 // Size of the Zoom Banner
-let outWidth = 1080, outHeight = outWidth * 9/16;
+// let outWidth = 1080, outHeight = outWidth * 9/16;
 
 // Size of the Clear Lumens
 // let outWidth = 900, outHeight = outWidth;
@@ -58,7 +61,10 @@ function draw() {
   updateDiag();
 
   // Save all id cards as images
-  // save(iArray[counter % table.getRowCount()].person.id + '.png');
+  // save(
+  //   // 'shape_' +
+  //   iArray[counter % table.getRowCount()].person.id + '.png'
+  // );
   // counter++;
   // if (counter == table.getRowCount()) noLoop();
 }
@@ -88,10 +94,9 @@ function keyPressed() {
 function updateDiag() {
   let obj = iArray[counter % table.getRowCount()];
 
-  obj.renderZoomBg();
+  // obj.renderZoomBg();
   // obj.renderLumenIDCard();
   // obj.renderSkeletonImage();
-  // obj.renderClearLumens();
-  // obj.renderDebugUserDetails();
-  // obj.renderLumenZoomBanner();
+  obj.renderClearLumens();
+  // obj.renderLumenTiles();
 }

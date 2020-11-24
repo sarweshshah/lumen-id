@@ -161,6 +161,7 @@ class Lumen {
   }
 
   renderClearLumens(_x = this.anchorPt.x, _y = this.anchorPt.y) {
+    // background(15);
     clear();
 
     push();
@@ -191,7 +192,7 @@ class Lumen {
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
 
     for (let j = 0; j < 1; j++) {
-      strokeWeight(1.5);
+      strokeWeight(2);
       stroke(240, 200, 45, 55 - 15 * j);
 
       if (j == 0) {
@@ -254,7 +255,7 @@ class Lumen {
       _x, height * 9.25 / 10
     );
 
-    this.renderDebugUserDetails();
+    // this.renderDebugUserDetails();
   }
 
   renderGrids(_x = this.anchorPt.x, _y = this.anchorPt.y) {
@@ -275,10 +276,56 @@ class Lumen {
     imageMode(CORNER);
     image(
       dilogo,
-      40, height - 90, min(width, height) / 15, min(width, height) / 15
+      40, height - 120, min(width, height) / 9, min(width, height) / 9
     );
     pop();
 
     // this.renderDebugUserDetails();
+  }
+
+  renderLumenTiles(_x = this.anchorPt.x, _y = height/2 - height/10) {
+    background(15);
+
+    push();
+    translate(-2 * this.centroid.x, -2 * this.centroid.y);
+    this.renderLumen(_x, _y);
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(
+      dilogo,
+      _x, _y,
+      min(width, height) / 10, min(width, height) / 10
+    );
+    pop();
+
+    push();
+    textFont(poppins_bold);
+    textAlign(CENTER, CENTER);
+    noStroke();
+    fill(218, 186, 96);
+
+    let voff = 125;
+
+    // ATTENDEE NAME
+    textSize(width / 18);
+    text(this.person.name.toUpperCase(),
+      width / 2, height - 7 * height / 25 + voff);
+
+    // ATTENDEE PROFESSION
+    fill(218, 186, 96);
+    textSize(width / 35)
+    text(this.person.profession.toUpperCase(),
+      width / 2, height - 4.75 * height / 25 + voff);
+
+    // SEPARATOR
+    stroke(218, 186, 96);
+    strokeWeight(3);
+    line(
+      width / 2 - 30, height - 5.65 * height / 25 + voff,
+      width / 2 + 30, height - 5.65 * height / 25 + voff
+    );
+    pop();
   }
 }
