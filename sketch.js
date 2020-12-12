@@ -15,10 +15,10 @@ let iArray = [];
 let counter = 0;
 
 // Size of the Lumen ID Card and Skeleton Image
-// let outWidth = 900, outHeight = outWidth * 6.5 / 5;
+let outWidth = 900, outHeight = outWidth * 6.5 / 5;
 
 // Size of the Lumen Tile
-let outWidth = 900, outHeight = outWidth * 6 / 5;
+// let outWidth = 900, outHeight = outWidth * 6 / 5;
 
 // Size of the Zoom Banner
 // let outWidth = 1080, outHeight = outWidth * 9/16;
@@ -88,15 +88,15 @@ function keyPressed() {
   }
 
   // Print person info in dev console. Uncomment for debugging
-  console.log(iArray[counter % table.getRowCount()]);
+  console.log(iArray[counter % table.getRowCount()].person);
 }
 
 function updateDiag() {
   let obj = iArray[counter % table.getRowCount()];
 
   // obj.renderZoomBg();
-  // obj.renderLumenIDCard();
+  obj.renderLumenIDCard();
   // obj.renderSkeletonImage();
-  obj.renderClearLumens();
+  // obj.renderClearLumens();
   // obj.renderLumenTiles();
 }

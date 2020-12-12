@@ -67,7 +67,9 @@ class Lumen {
 
       push();
       beginShape();
-      for (let lumenPt of this.lumenArray) {
+
+      for (let i = 0; i < this.lumenArray.length; i++) {
+        const lumenPt = this.lumenArray[i];
         let r = dist(0, 0, lumenPt.x, lumenPt.y) - _steps_size * j;
         r *= _zoom;
 
@@ -75,7 +77,17 @@ class Lumen {
         let pt = createVector(r * cos(ang), r * sin(ang))
         curveVertex(_x + pt.x, _y + pt.y);
       }
-      endShape(CLOSE);
+      for (let i = 0; i < 3; i++) {
+        const lumenPt = this.lumenArray[i];
+        let r = dist(0, 0, lumenPt.x, lumenPt.y) - _steps_size * j;
+        r *= _zoom;
+
+        let ang = lumenPt.heading();
+        let pt = createVector(r * cos(ang), r * sin(ang))
+        curveVertex(_x + pt.x, _y + pt.y);
+      }
+
+      endShape();
       pop();
     }
   }
@@ -103,7 +115,7 @@ class Lumen {
     push();
     imageMode(CORNER);
     let aspr = vllogo.width / vllogo.height;
-    tint(255, 127); // Display at half opacity
+    tint(255, 100); // Display at half opacity
     image(
       vllogo,
       width - 4 * width / 25, height / 30 * width / height,
