@@ -15,7 +15,7 @@ let iArray = [];
 let counter = 0;
 
 // Size of the Lumen ID Card and Skeleton Image
-let outWidth = 900, outHeight = outWidth * 6.5 / 5;
+// let outWidth = 900, outHeight = outWidth * 6.5 / 5;
 
 // Size of the Lumen Tile
 // let outWidth = 900, outHeight = outWidth * 6 / 5;
@@ -24,7 +24,7 @@ let outWidth = 900, outHeight = outWidth * 6.5 / 5;
 // let outWidth = 1080, outHeight = outWidth * 9/16;
 
 // Size of the Clear Lumens
-// let outWidth = 900, outHeight = outWidth;
+let outWidth = 900, outHeight = outWidth;
 
 function preload() {
   // Load the csv file before beginning
@@ -95,8 +95,8 @@ function updateDiag() {
   let obj = iArray[counter % table.getRowCount()];
 
   // obj.renderZoomBg();
-  obj.renderLumenIDCard();
+  // obj.renderLumenIDCard();
   // obj.renderSkeletonImage();
-  // obj.renderClearLumens();
+  obj.renderClearLumens();
   // obj.renderLumenTiles();
 }

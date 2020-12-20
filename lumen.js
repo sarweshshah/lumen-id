@@ -6,7 +6,8 @@ class Lumen {
     this.config = {
       // Min and max radius for Lumen shape
       minR: 250,
-      maxR: 400
+      maxR: 400,
+      levels: 20
     }
 
     this.util = new Utility();
@@ -60,10 +61,11 @@ class Lumen {
     curveTightness(map(this.lumenArray.length, 5, 20, -2, -1));
     // curveTightness(1);
 
-    for (let j = 0; j < 40; j++) {
+    for (let j = 0; j < this.config.levels; j++) {
       strokeWeight(3.5);
-      stroke(240, 200, 45, 255 - 15 * j);
-      // 218, 186, 96
+      let c1 = color(240, 200, 45, 255);
+      let c2 = color(210, 120, 0, 0);
+      stroke(lerpColor(c1, c2, map(j, 0, this.config.levels, 0, 1)));
 
       push();
       beginShape();
@@ -173,13 +175,14 @@ class Lumen {
   }
 
   renderClearLumens(_x = this.anchorPt.x, _y = this.anchorPt.y) {
-    // background(15);
-    clear();
+    background(15);
+    // clear();
 
     push();
     translate(-2 * this.centroid.x, -2 * this.centroid.y);
     this.renderLumen(_x, height / 2);
     pop();
+    this.renderDebugUserDetails();
   }
 
   renderDebugUserDetails() {
@@ -187,10 +190,12 @@ class Lumen {
     fill(237, 191, 34);
 
     textFont('monospace');
-    textSize(13);
+    textSize(17);
     textAlign(LEFT, TOP);
     text(
-      this.person.name.toUpperCase() + '\n' + this.person.profession + '\n',
+      this.person.name.toUpperCase() + '\n'
+      + this.person.profession + '\n'
+      + '2020.'.toUpperCase() + this.person.id.toUpperCase().padStart(3, '0'),
       40, 40);
   }
 
@@ -295,7 +300,7 @@ class Lumen {
     // this.renderDebugUserDetails();
   }
 
-  renderLumenTiles(_x = this.anchorPt.x, _y = height/2 - height/10) {
+  renderLumenTiles(_x = this.anchorPt.x, _y = height / 2 - height / 10) {
     background(15);
 
     push();
